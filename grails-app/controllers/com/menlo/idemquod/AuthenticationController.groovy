@@ -1,12 +1,18 @@
 package com.menlo.idemquod
 
+import com.grailsrocks.authentication.AuthenticatedUser
+import com.grailsrocks.authentication.LoginForm
+import com.grailsrocks.authentication.SignupForm
+
+import grails.converters.JSON
+
 class AuthenticationController {
   def defaultAction = "index"
   def authenticationService
 
   def index = {
     if( authenticationService.isLoggedIn(request) ) {
-      render 'hello you are loggedin'
+      redirect([controller: 'questions'])
     }
   }
 
@@ -74,11 +80,14 @@ class AuthenticationController {
         }
       }
     } else {
+
+
       //signup failed during validation or awaiting approval
       flash.signupForm = form
       flash.signupFormErrors = form.errors // Workaround for grails bug in 0.5.6
       if (log.debugEnabled) log.debug("Signup failed for [${form.login}] - form invalid: ${form.errors}")
 
+      render flash as JSON
       redirect(flash.authErrorURL ? flash.authErrorURL : urls.error)
     }
   }
