@@ -90,7 +90,22 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+grails {
+  mail {
+    host = "smtp.gmail.com"
+    port = 465
+    username = "idemquod@gmail.com"
+    password = "l4nc3KODA4iq"
+    props = [
+      "mail.smtp.auth": "true",
+      "mail.smtp.socketFactory.port": "465",
+      "mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
+      "mail.smtp.socketFactory.fallback":"false"
+    ]
+  }
+}
+
 grails.validateable.classes = [
-        com.grailsrocks.authentication.SignupForm,
-        com.grailsrocks.authentication.LoginForm
+  com.grailsrocks.authentication.SignupForm,
+  com.grailsrocks.authentication.LoginForm
 ]
