@@ -52,8 +52,7 @@ class QuestionsController {
       authenticationUser: currentUser
     ).save(flush: true) //save when created
 
-    //return question that was created
-    render q as JSON
+    forward controller: "iq", action: "index"
   }
 }
 
